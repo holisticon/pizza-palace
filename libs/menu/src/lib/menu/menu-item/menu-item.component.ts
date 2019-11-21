@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Pizza } from '@pizza-palace/pizza-shared';
+import { Pizza, PizzaSize } from '@pizza-palace/pizza-shared';
 
 @Component({
     selector: 'pp-menu-item',
@@ -8,11 +8,13 @@ import { Pizza } from '@pizza-palace/pizza-shared';
 })
 export class MenuItemComponent {
 
+    pizzaSizes = PizzaSize;
+
     @Input()
     pizza: Pizza;
 
-    onAddToOrder(pizza: Pizza) {
-        console.log(pizza);
+    onAddToOrder(pizza: Pizza, size: PizzaSize) {
+        console.log({ pizza, size });
     }
 
 }

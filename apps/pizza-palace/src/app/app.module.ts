@@ -17,6 +17,10 @@ import { AppComponent } from './app.component';
             {
                 path: 'menu',
                 loadChildren: () => import('@pizza-palace/menu').then(m => m.MenuModule)
+            },
+            {
+                path: 'order',
+                loadChildren: () => import('@pizza-palace/order').then(m => m.OrderModule)
             }
         ])
     ],

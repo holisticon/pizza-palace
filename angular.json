@@ -128,7 +128,7 @@
       "projectType": "library",
       "root": "libs/menu",
       "sourceRoot": "libs/menu/src",
-      "prefix": "pizza-palace",
+      "prefix": "pp",
       "architect": {
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
@@ -159,7 +159,7 @@
       "projectType": "library",
       "root": "libs/pizza-shared",
       "sourceRoot": "libs/pizza-shared/src",
-      "prefix": "pizza-palace",
+      "prefix": "pp",
       "architect": {
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
@@ -185,17 +185,90 @@
           "styleext": "scss"
         }
       }
+    },
+    "order": {
+      "projectType": "library",
+      "root": "libs/order",
+      "sourceRoot": "libs/order/src",
+      "prefix": "pp",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/order/tsconfig.lib.json",
+              "libs/order/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/order/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/order/jest.config.js",
+            "tsConfig": "libs/order/tsconfig.spec.json",
+            "setupFile": "libs/order/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "order-shared": {
+      "projectType": "library",
+      "root": "libs/order-shared",
+      "sourceRoot": "libs/order-shared/src",
+      "prefix": "pp",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/order-shared/tsconfig.lib.json",
+              "libs/order-shared/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/order-shared/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/order-shared/jest.config.js",
+            "tsConfig": "libs/order-shared/tsconfig.spec.json",
+            "setupFile": "libs/order-shared/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
     }
   },
   "cli": {
     "defaultCollection": "@nrwl/angular"
   },
   "schematics": {
+    "@schematics/angular:component": {
+      "prefix": "pp",
+      "styleext": "scss",
+      "changeDetection": "OnPush"
+    },
+    "@nrwl/schematics:component": {
+      "prefix": "pp",
+      "styleext": "scss"
+    },
     "@nrwl/angular:application": {
       "unitTestRunner": "jest",
       "e2eTestRunner": "cypress"
     },
     "@nrwl/angular:library": {
+      "prefix": "pp",
+      "styleext": "scss",
       "unitTestRunner": "jest"
     }
   },

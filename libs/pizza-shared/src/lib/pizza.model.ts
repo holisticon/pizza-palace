@@ -3,3 +3,9 @@ export interface Pizza {
     price: number;
     image: string;
 }
+
+export enum PizzaSize {
+    S = 's',
+    M = 'm',
+    L = 'l'
+}

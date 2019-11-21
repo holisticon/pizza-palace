@@ -19,6 +19,12 @@
     },
     "pizza-shared": {
       "tags": []
+    },
+    "order": {
+      "tags": []
+    },
+    "order-shared": {
+      "tags": []
     }
   }
 }

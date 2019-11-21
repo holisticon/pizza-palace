@@ -1,6 +1,5 @@
-<img [src]="pizza.image" [alt]="pizza.name">
-{{ pizza.name }}
-{{ pizza.price | currency:'EUR' }}
+<pp-pizza [pizza]="pizza"></pp-pizza>
 
-
-<button (click)="onAddToOrder(pizza)">Add to Order</button>
+<button (click)="onAddToOrder(pizza, pizzaSizes.S)">S</button>
+<button (click)="onAddToOrder(pizza, pizzaSizes.M)">M</button>
+<button (click)="onAddToOrder(pizza, pizzaSizes.L)">L</button>
