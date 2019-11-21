@@ -123,6 +123,37 @@
           }
         }
       }
+    },
+    "menu": {
+      "projectType": "library",
+      "root": "libs/menu",
+      "sourceRoot": "libs/menu/src",
+      "prefix": "pizza-palace",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/menu/tsconfig.lib.json",
+              "libs/menu/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/menu/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/menu/jest.config.js",
+            "tsConfig": "libs/menu/tsconfig.spec.json",
+            "setupFile": "libs/menu/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
     }
   },
   "cli": {
