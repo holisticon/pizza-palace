@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MenuComponent } from './menu/menu.component';
+import { MenuItemComponent } from './menu/menu-item/menu-item.component';
 
 @NgModule({
     imports: [
@@ -15,6 +16,6 @@ import { MenuComponent } from './menu/menu.component';
             }
         ])
     ],
-    declarations: [MenuComponent]
+    declarations: [MenuComponent, MenuItemComponent]
 })
 export class MenuModule { }

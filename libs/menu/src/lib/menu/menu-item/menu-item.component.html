@@ -1,0 +1,6 @@
+<img [src]="pizza.image" [alt]="pizza.name">
+{{ pizza.name }}
+{{ pizza.price | currency:'EUR' }}
+
+
+<button (click)="onAddToOrder(pizza)">Add to Order</button>

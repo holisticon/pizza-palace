@@ -1,1 +1,7 @@
-<p>menu works!</p>
+<h1>Menu</h1>
+
+<ul>
+    <li *ngFor="let pizza of pizzas | async">
+        <pp-menu-item [pizza]="pizza"></pp-menu-item>
+    </li>
+</ul>

@@ -10,7 +10,7 @@
       },
       "root": "apps/pizza-palace",
       "sourceRoot": "apps/pizza-palace/src",
-      "prefix": "pizza-palace",
+      "prefix": "pp",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -146,6 +146,37 @@
             "jestConfig": "libs/menu/jest.config.js",
             "tsConfig": "libs/menu/tsconfig.spec.json",
             "setupFile": "libs/menu/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "pizza-shared": {
+      "projectType": "library",
+      "root": "libs/pizza-shared",
+      "sourceRoot": "libs/pizza-shared/src",
+      "prefix": "pizza-palace",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/pizza-shared/tsconfig.lib.json",
+              "libs/pizza-shared/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/pizza-shared/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/pizza-shared/jest.config.js",
+            "tsConfig": "libs/pizza-shared/tsconfig.spec.json",
+            "setupFile": "libs/pizza-shared/src/test-setup.ts"
           }
         }
       },
