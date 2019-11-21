@@ -1,5 +1,7 @@
 <h1>Menu</h1>
 
+<pp-current-order></pp-current-order>
+
 <ul>
     <li *ngFor="let pizza of pizzas | async">
         <pp-menu-item [pizza]="pizza" (addToOrder)="onAddToOrder($event)"></pp-menu-item>

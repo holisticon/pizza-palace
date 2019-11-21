@@ -9,3 +9,13 @@ export const selectOrderItems = createSelector(
     getOrderState,
     state => state.items
 )
+
+export const selectTotalPrice = createSelector(
+    selectOrderItems,
+    items => items.reduce((total, item) => total + item.pizza.price, 0)
+)
+
+export const selectQuantity = createSelector(
+    selectOrderItems,
+    items => items.length
+)

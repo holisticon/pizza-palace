@@ -3,3 +3,5 @@
         <pp-order-item [item]="item" (remove)="onRemove($event)"></pp-order-item>
     </li>
 </ul>
+
+Total: {{ totalPrice | async | currency:'EUR'}}
