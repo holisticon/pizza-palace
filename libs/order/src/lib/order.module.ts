@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { OrderComponent } from './order/order.component';
 import { OrderItemComponent } from './order/order-item/order-item.component';
 import { PizzaSharedModule } from '@pizza-palace/pizza-shared';
+import { OrderSharedModule } from '@pizza-palace/order-shared';
 
 @NgModule({
   imports: [
@@ -12,7 +13,8 @@ import { PizzaSharedModule } from '@pizza-palace/pizza-shared';
     RouterModule.forChild([
        {path: '', pathMatch: 'full', component: OrderComponent}
     ]),
-    PizzaSharedModule
+    PizzaSharedModule,
+    OrderSharedModule
   ],
   declarations: [OrderComponent, OrderItemComponent]
 })

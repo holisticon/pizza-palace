@@ -1,5 +1,5 @@
 <ul>
     <li *ngFor="let item of orderItems | async">
-        <pp-order-item [item]="item"></pp-order-item>
+        <pp-order-item [item]="item" (remove)="onRemove($event)"></pp-order-item>
     </li>
 </ul>

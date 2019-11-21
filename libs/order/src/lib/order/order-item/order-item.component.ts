@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
 import { OrderItem } from '@pizza-palace/order-shared';
 
 @Component({
@@ -12,8 +12,11 @@ export class OrderItemComponent {
     @Input()
     item: OrderItem;
 
+    @Output()
+    remove: EventEmitter<OrderItem> = new EventEmitter();
+
     onRemoveItem(item: OrderItem) {
-        console.log(item);
+        this.remove.emit(item);
     }
 
 }

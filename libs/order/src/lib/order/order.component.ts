@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { OrderItem } from '@pizza-palace/order-shared';
+import { OrderItem, OrderPartialState, selectOrderItems, removeFromOrder } from '@pizza-palace/order-shared';
 import { PizzaSize } from '@pizza-palace/pizza-shared';
 import { Observable, of } from 'rxjs';
+import { Store } from '@ngrx/store';
 
 @Component({
     selector: 'pp-order',
@@ -10,25 +11,15 @@ import { Observable, of } from 'rxjs';
 })
 export class OrderComponent {
 
-    orderItems: Observable<OrderItem[]> = of([
-        {
-            pizza: {
-                name: 'Salami',
-                price: 7.90,
-                image: 'https://picsum.photos/50/50?1'
-            },
-            size: PizzaSize.S
+    orderItems: Observable<OrderItem[]>;
 
-        },
-        {
+    constructor(
+        private store: Store<OrderPartialState>
+    ) {
+        this.orderItems = this.store.select(selectOrderItems);
+    }
 
-            pizza: {
-                name: 'Schinken',
-                price: 7.90,
-                image: 'https://picsum.photos/50/50?2'
-            },
-            size: PizzaSize.L
-        }
-    ])
-
+    onRemove(item: OrderItem) {
+        this.store.dispatch(removeFromOrder({ item }));
+    }
 }

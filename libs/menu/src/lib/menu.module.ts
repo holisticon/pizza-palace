@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { MenuComponent } from './menu/menu.component';
 import { MenuItemComponent } from './menu/menu-item/menu-item.component';
 import { PizzaSharedModule } from '@pizza-palace/pizza-shared';
+import { OrderSharedModule } from '@pizza-palace/order-shared';
 
 @NgModule({
     imports: [
@@ -15,7 +16,8 @@ import { PizzaSharedModule } from '@pizza-palace/pizza-shared';
                 component: MenuComponent
             }
         ]),
-        PizzaSharedModule
+        PizzaSharedModule,
+        OrderSharedModule
     ],
     declarations: [MenuComponent, MenuItemComponent]
 })

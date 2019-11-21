@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { StoreModule, ActionReducer } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { storeLogger } from 'ngrx-store-logger';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 
 export function logger(reducer: ActionReducer<any>): any {
@@ -30,6 +31,9 @@ export function logger(reducer: ActionReducer<any>): any {
             }
         }),
         EffectsModule.forRoot([]),
+        StoreDevtoolsModule.instrument({
+            logOnly: environment.production
+          }),
         RouterModule.forRoot([
             {
                 path: '',
