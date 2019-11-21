@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Pizza } from '@pizza-palace/pizza-shared';
 import { Observable, of } from 'rxjs';
+import { OrderItem, addToOrder } from '@pizza-palace/order-shared';
+import { Store } from '@ngrx/store';
 
 @Component({
     selector: 'pp-menu',
@@ -26,5 +28,13 @@ export class MenuComponent {
             image: 'https://picsum.photos/50/50'
         },
     ])
+
+    constructor(
+        private store: Store<void>
+    ) {}
+
+    onAddToOrder(item: OrderItem) {
+        this.store.dispatch(addToOrder({ item }));
+    }
 
 }

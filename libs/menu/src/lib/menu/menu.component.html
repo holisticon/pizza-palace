@@ -2,6 +2,6 @@
 
 <ul>
     <li *ngFor="let pizza of pizzas | async">
-        <pp-menu-item [pizza]="pizza"></pp-menu-item>
+        <pp-menu-item [pizza]="pizza" (addToOrder)="onAddToOrder($event)"></pp-menu-item>
     </li>
 </ul>

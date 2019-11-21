@@ -29,7 +29,6 @@
   },
   "private": true,
   "dependencies": {
-    "@nrwl/angular": "8.8.0",
     "@angular/animations": "^8.2.0",
     "@angular/common": "^8.2.0",
     "@angular/compiler": "^8.2.0",
@@ -38,7 +37,13 @@
     "@angular/platform-browser": "^8.2.0",
     "@angular/platform-browser-dynamic": "^8.2.0",
     "@angular/router": "^8.2.0",
+    "@ngrx/effects": "8.5.0",
+    "@ngrx/entity": "8.5.0",
+    "@ngrx/router-store": "8.5.0",
+    "@ngrx/store": "8.5.0",
+    "@nrwl/angular": "8.8.0",
     "core-js": "^2.5.4",
+    "ngrx-store-logger": "0.2.4",
     "rxjs": "~6.4.0",
     "zone.js": "^0.9.1"
   },
@@ -62,6 +67,8 @@
     "@types/jest": "24.0.9",
     "ts-jest": "24.0.0",
     "cypress": "3.4.1",
-    "@nrwl/cypress": "8.8.0"
+    "@nrwl/cypress": "8.8.0",
+    "@ngrx/schematics": "8.5.0",
+    "@ngrx/store-devtools": "8.5.0"
   }
 }
