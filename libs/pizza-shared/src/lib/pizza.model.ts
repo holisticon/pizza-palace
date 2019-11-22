@@ -6,7 +6,7 @@ export interface Pizza {
 }
 
 export enum PizzaSize {
-    S = 's',
-    M = 'm',
-    L = 'l'
+    S = 'S',
+    M = 'M',
+    L = 'L'
 }
