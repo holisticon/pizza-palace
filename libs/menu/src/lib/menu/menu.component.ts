@@ -15,17 +15,20 @@ export class MenuComponent {
         {
             name: 'Salami',
             price: 7.90,
-            image: 'https://picsum.photos/60'
+            image: 'https://picsum.photos/80',
+            ingredients: 'Salami, Käse, Tomatensoße'
         },
         {
             name: 'Schinken',
             price: 7.90,
-            image: 'https://picsum.photos/60'
+            image: 'https://picsum.photos/80',
+            ingredients: 'Schinken, Pilze, Käse, Tomatensoße'
         },
         {
             name: 'Brokkoli',
             price: 6.90,
-            image: 'https://picsum.photos/60'
+            image: 'https://picsum.photos/80',
+            ingredients: 'Brokkoli, Mais, Käse, Tomatensoße'
         },
     ])
 

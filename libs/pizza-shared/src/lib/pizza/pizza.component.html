@@ -2,7 +2,10 @@
 <div class="media">
     <img [src]="pizza.image" class="mr-3 rounded" [alt]="pizza.name">
     <div class="media-body">
-        <h5 class="mt-0">{{ pizza.name }}</h5>
-        {{ pizza.price | currency:'EUR' }}
+        <h5 class="m-0">{{ pizza.name }}</h5>
+        <small class="text-muted">{{ pizza.ingredients }}</small>
+        <div>
+            {{ pizza.price | currency:'EUR' }}
+        </div>
     </div>
 </div>
