@@ -13,22 +13,22 @@ export class MenuComponent {
 
     pizzas: Observable<Pizza[]> = of([
         {
-            name: 'Salami',
+            name: 'Pizza Olive',
             price: 7.90,
-            image: 'https://picsum.photos/80',
-            ingredients: 'Salami, Käse, Tomatensoße'
+            image: '/assets/pizza-olive.jpg',
+            ingredients: 'Olives, Baconb, Cheese, Tomato sauce'
         },
         {
-            name: 'Schinken',
+            name: 'Pizza Aspargus',
             price: 7.90,
-            image: 'https://picsum.photos/80',
-            ingredients: 'Schinken, Pilze, Käse, Tomatensoße'
+            image: '/assets/pizza-aspargus.jpg',
+            ingredients: 'Aspargus, Bacon, Onions, Corn, Cheese, Tomato sauce'
         },
         {
-            name: 'Brokkoli',
+            name: 'Pizza BBQ',
             price: 6.90,
-            image: 'https://picsum.photos/80',
-            ingredients: 'Brokkoli, Mais, Käse, Tomatensoße'
+            image: '/assets/pizza-barbecue.jpg',
+            ingredients: 'Barbecue sauce, Sauce Hollandaise, Cheese, Tomato sauce'
         },
     ])
 
