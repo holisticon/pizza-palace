@@ -1,9 +1,10 @@
-<h1>Menu</h1>
+<div class="row justify-content-between align-items-center m-0 mb-3">
+    <h1 class="m-0">Menu</h1>
+    <pp-current-order></pp-current-order>
+</div>
 
-<pp-current-order></pp-current-order>
-
-<ul>
-    <li *ngFor="let pizza of pizzas | async">
+<ul class="list-unstyled">
+    <li class="mb-3" *ngFor="let pizza of pizzas | async">
         <pp-menu-item [pizza]="pizza" (addToOrder)="onAddToOrder($event)"></pp-menu-item>
     </li>
 </ul>

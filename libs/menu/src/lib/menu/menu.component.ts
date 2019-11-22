@@ -15,17 +15,17 @@ export class MenuComponent {
         {
             name: 'Salami',
             price: 7.90,
-            image: 'https://picsum.photos/50/50'
+            image: 'https://picsum.photos/60'
         },
         {
             name: 'Schinken',
             price: 7.90,
-            image: 'https://picsum.photos/50/50'
+            image: 'https://picsum.photos/60'
         },
         {
             name: 'Brokkoli',
             price: 6.90,
-            image: 'https://picsum.photos/50/50'
+            image: 'https://picsum.photos/60'
         },
     ])
 

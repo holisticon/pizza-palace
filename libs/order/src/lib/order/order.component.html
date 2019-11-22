@@ -1,7 +1,9 @@
-<ul>
-    <li *ngFor="let item of orderItems | async">
+<h1 class="mb-3">Order</h1>
+
+<ul class="list-unstyled">
+    <li class="mb-3" *ngFor="let item of orderItems | async">
         <pp-order-item [item]="item" (remove)="onRemove($event)"></pp-order-item>
     </li>
 </ul>
 
-Total: {{ totalPrice | async | currency:'EUR'}}
+Total: <span class="font-weight-bold">{{ totalPrice | async | currency:'EUR'}}</span>
