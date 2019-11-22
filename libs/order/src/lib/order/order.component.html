@@ -6,4 +6,12 @@
     </li>
 </ul>
 
-Total: <span class="font-weight-bold">{{ totalPrice | async | currency:'EUR'}}</span>
+<div class="row m-0 justify-content-between align-items-center">
+<div>
+    Total: <span class="font-weight-bold">{{ totalPrice | async | currency:'EUR'}}</span>
+</div>
+<button class="btn shadow-sm btn-success" (click)="onCheckout()" [disabled]="isCheckingOut | async">
+    <span *ngIf="isCheckingOut | async" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+    Checkout
+</button>
+</div>

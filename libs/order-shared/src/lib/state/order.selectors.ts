@@ -19,3 +19,8 @@ export const selectQuantity = createSelector(
     selectOrderItems,
     items => items.length
 )
+
+export const selectIsCheckingOut = createSelector(
+    getOrderState,
+    state => state.isCheckingOut
+)

@@ -1,18 +1,20 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import { OrderItem } from '../order.model';
-import { addToOrder, removeFromOrder } from './order.actions';
+import { addToOrder, removeFromOrder, checkoutOrder, checkoutOrderSuccess } from './order.actions';
 
 export const ORDER_FEATURE_KEY = 'order';
 
 export interface OrderState  {
+    isCheckingOut: boolean,
     items: OrderItem[]
 }
 
 export interface OrderPartialState {
-  readonly [ORDER_FEATURE_KEY]: OrderState;
+    readonly [ORDER_FEATURE_KEY]: OrderState;
 }
 
 export const initialState: OrderState = {
+    isCheckingOut: false,
     items: []
 };
 
@@ -24,8 +26,18 @@ const orderReducer = createReducer(
   })),
   on(removeFromOrder, (state, { item }) => ({
       ...state,
-      items: state.items.filter(it => it !== item)
+      items: state.items.filter(it => it !== item),
+
   })),
+  on(checkoutOrder, (state) => ({
+      ...state,
+      isCheckingOut: true
+  })),
+  on(checkoutOrderSuccess, (state) => ({
+      ...state,
+      isCheckingOut: false,
+      items: []
+  }))
 );
 
 export function reducer(state: OrderState | undefined, action: Action) {
