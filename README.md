@@ -1,84 +1,176 @@
-# PizzaPalace
+# @ngxp/pizza-palace
 
-This project was generated using [Nx](https://nx.dev).
+An example Angular application that uses [Nx Workspace](https://nx.dev) and [Ngrx](https://ngrx.io) to show how to build modularized frontends in a monorepo.
 
-<p align="center"><img src="https://raw.githubusercontent.com/nrwl/nx/master/nx-logo.png" width="450"></p>
 
-🔎 **Nx is a set of Extensible Dev Tools for Monorepos.**
 
-## Quick Start & Documentation
+![Diagram](docs/diagram.svg)
 
-[Nx Documentation](https://nx.dev/angular)
+## Modularization
+This section describes the technical foundation of the artefacts described in the architecture overview.
 
-[10-minute video showing all Nx features](https://nx.dev/angular/getting-started/what-is-nx)
+### Repositories and Workspaces
+The repositories for applications and libraries should reflect the organizational boundaries of the teams implementing them. Following the idea that each microservice has its own dedicated team this means that all feature libraries of a microservice should be managed within the repository of that microservice. The same applies to shared libaries and the applications which all have their dedicated repository.
 
-[Interactive Tutorial](https://nx.dev/angular/tutorial/01-create-application)
+Each repository contains a workspace created with [Angular CLI](https://cli.angular.io/) and [Nx Workspace](https://nrwl.io/nx).
 
-## Adding capabilities to your workspace
+### Application Workspace
+Applications are kept modularized by separating features out into dedicated modules via Nx' `ng generate lib` command. The root app module should be as lean as possible and mostly contain code for configuring and setting up the application as well as orchestrating the feature modules.
 
-Nx supports many plugins which add capabilities for developing different types of applications and different tools.
+The following examples illustrates the module structure for the simple pizza palace online shop application.
 
-These capabilities include generating applications, libraries, etc as well as the devtools to test, and build projects as well.
+```
+project root
+├─ apps
+│  └─ pizza-palace
+├─ libs
+│  ├─ menu
+│  ├─ order
+│  ├─ order-shared
+│  └─ pizza-shared
+```
 
-Below are some plugins which you can add to your workspace:
+The `pizza-palace` app module provides the application frame including basic UI and configuration and otherwise delegates to lazy-loaded feature modules for implementing the actual features of the app.
 
-- [Angular](https://angular.io)
-  - `ng add @nrwl/angular`
-- [React](https://reactjs.org)
-  - `ng add @nrwl/react`
-- Web (no framework frontends)
-  - `ng add @nrwl/web`
-- [Nest](https://nestjs.com)
-  - `ng add @nrwl/nest`
-- [Express](https://expressjs.com)
-  - `ng add @nrwl/express`
-- [Node](https://nodejs.org)
-  - `ng add @nrwl/node`
+#### App Module
+The app module is the entry-point for Angular's bootstrapper and configures application-wide modules. Via the routing configuration, the app module defines which feature modules are loaded while the user navigates through the application.
 
-## Generate an application
+```ts
+// app.module.ts
+@NgModule({
+…
+    imports: [
+        RouterModule.forRoot([
+            { path: '', pathMatch: 'full', redirectTo: 'menu' },
+            { path: 'menu', loadChildren: () => import('@pizza-palace/menu').then(m => m.MenuModule) },
+            { path: 'order', loadChildren: () => import('@pizza-palace/order').then(m => m.OrderModule) }
+        ])
+    ]
+…
+})
+export class AppModule { }
+```
 
-Run `ng g @nrwl/angular:app my-app` to generate an application.
+The root component of the application defines the basic shell of the application and otherwise delegates to the components wired up via the routing configuration.
 
-> You can use any of the plugins above to generate applications as well.
+```html
+<!-- app.component.html -->
+<div class="container">
+    <router-outlet></router-outlet>
+</div>
+```
 
-When using Nx, you can create multiple applications and libraries in the same workspace.
+#### Feature Modules
+Feature modules expose their API through a file called `index.ts` within the `src` directory. Other modules may only import what is exposed through this file.
 
-## Generate a library
+```
+project root
+├─ libs
+│  ├─ menu
+│  │  ├─ src
+│  │  │  ├─ lib
+│  │  │  │  ├─ menu
+│  │  │  │  │  └─ menu.component.ts
+│  │  │  │  └─ menu.module.ts
+│  │  │  └─ index.ts
+```
 
-Run `ng g @nrwl/angular:lib my-lib` to generate a library.
+The menu feature module for example only exports the `MenuModule` that is used in the `AppModule`'s routing configuration. The `MenuComponent` is not directly referenceable by other modules.
 
-> You can also use any of the plugins above to generate libraries as well.
+```ts
+// index.ts
+export * from './lib/menu.module';
+```
 
-Libraries are sharable across libraries and applications. They can be imported from `@pizza-palace/mylib`.
+#### Shared Modules
 
-## Development server
+As the name suggests, lazy-loaded feature modules are only loaded when the user navigates to the route for which the module is configured. That's why it is recommended to place features, that are used by other modules, into separate modules.^
 
-Run `ng serve my-app` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
+In the following example, the `menu` feature module uses the `current-order` component. If that component was put in the `order` feature module, the whole module would be loaded when rendering the `menu` component even if the user never navigates to a view of the `order` feature module.
 
-## Code scaffolding
+```html
+<!-- menu.component.html -->
+<div class="row justify-content-between align-items-center m-0 my-4">
+    <h1 class="m-0">Menu</h1>
+    <pp-current-order></pp-current-order>
+</div>
+```
 
-Run `ng g component my-component --project=my-app` to generate a new component.
+Instead, the component is provided by the `order-shared` module...
 
-## Build
+```
+project root
+├─ libs
+│  ├─ order-shared
+│  │  ├─ src
+│  │  │  ├─ lib
+│  │  │  │  ├─ current-order
+│  │  │  │  │  └─ current-order.component.ts
+│  │  │  │  └─ order-shared.module.ts
+│  │  │  └─ index.ts
+```
 
-Run `ng build my-app` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+```ts
+// index.ts
+export * from './lib/order-shared.module';
 
-## Running unit tests
+```
 
-Run `ng test my-app` to execute the unit tests via [Jest](https://jestjs.io).
+```ts
+// order-shared.module.ts
+@NgModule({
+…
+    declarations: [
+        CurrentOrderComponent
+    ],
+    exports: [
+        CurrentOrderComponent
+    ]
+…
+})
+export class OrderSharedModule {}
+```
 
-Run `nx affected:test` to execute the unit tests affected by a change.
+.. which is imported in the `menu` module's configuration.
 
-## Running end-to-end tests
+```ts
+// menu.module.ts
+import { OrderSharedModule } from '@pizza-palace/order-shared';
 
-Run `ng e2e my-app` to execute the end-to-end tests via [Cypress](https://www.cypress.io).
+@NgModule({
+    …
+    imports: [
+        OrderSharedModule
+    ]
+…
+})
+export class MenuModule { }
+```
 
-Run `nx affected:e2e` to execute the end-to-end tests affected by a change.
+#### Importing Feature/Shared Modules
+When importing feature or shared modules instead of using a relative path, a package name is used.
 
-## Understand your workspace
+```ts
+// menu.module.ts
+import { OrderSharedModule } from '@pizza-palace/order-shared';
+```
 
-Run `nx dep-graph` to see a diagram of the dependencies of your projects.
+This is done using the `paths` compiler option of TypeScript. The global `tsconfig.json` contains a mapping between package names and local paths. Mappings are automatically added when generating a new libary via Nx.
 
-## Further help
+```json
+// tsconfig.js
+{
+…
+  "compilerOptions": {
+    "paths": {
+      "@pizza-palace/order-shared": [
+        "libs/order-shared/src/index.ts"
+      ]
+    }
+  }
+…
+}
 
-Visit the [Nx Documentation](https://nx.dev/angular) to learn more.
+```
+
+This means that libraries that were developed within an application workspace can evolve into shared libraries that are used across multiple applications in the future.
