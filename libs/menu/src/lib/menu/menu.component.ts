@@ -3,6 +3,8 @@ import { Pizza } from '@pizza-palace/pizza-shared';
 import { Observable, of } from 'rxjs';
 import { OrderItem, addToOrder } from '@pizza-palace/order-shared';
 import { Store } from '@ngrx/store';
+import { MenuService } from '../menu.service';
+import { tap, delay } from 'rxjs/operators';
 
 @Component({
     selector: 'pp-menu',
@@ -11,30 +13,19 @@ import { Store } from '@ngrx/store';
 })
 export class MenuComponent {
 
-    pizzas: Observable<Pizza[]> = of([
-        {
-            name: 'Pizza Olive',
-            price: 7.90,
-            image: '/assets/pizza-olive.jpg',
-            ingredients: 'Olives, Baconb, Cheese, Tomato sauce'
-        },
-        {
-            name: 'Pizza Aspargus',
-            price: 7.90,
-            image: '/assets/pizza-aspargus.jpg',
-            ingredients: 'Aspargus, Bacon, Onions, Corn, Cheese, Tomato sauce'
-        },
-        {
-            name: 'Pizza BBQ',
-            price: 6.90,
-            image: '/assets/pizza-barbecue.jpg',
-            ingredients: 'Barbecue sauce, Sauce Hollandaise, Cheese, Tomato sauce'
-        },
-    ])
+    pizzas: Observable<Pizza[]>;
+
+    isLoading = true;
 
     constructor(
-        private store: Store<void>
-    ) {}
+        private store: Store<void>,
+        private menuService: MenuService
+    ) {
+        this.pizzas = this.menuService.getPizzas().pipe(
+            delay(2000),
+            tap(() => this.isLoading = false)
+        );
+    }
 
     onAddToOrder(item: OrderItem) {
         this.store.dispatch(addToOrder({ item }));

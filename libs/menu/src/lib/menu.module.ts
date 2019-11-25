@@ -5,10 +5,13 @@ import { MenuComponent } from './menu/menu.component';
 import { MenuItemComponent } from './menu/menu-item/menu-item.component';
 import { PizzaSharedModule } from '@pizza-palace/pizza-shared';
 import { OrderSharedModule } from '@pizza-palace/order-shared';
+import { MenuService } from './menu.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
     imports: [
         CommonModule,
+        HttpClientModule,
         RouterModule.forChild([
             {
                 path: '',
@@ -19,6 +22,7 @@ import { OrderSharedModule } from '@pizza-palace/order-shared';
         PizzaSharedModule,
         OrderSharedModule
     ],
-    declarations: [MenuComponent, MenuItemComponent]
+    declarations: [MenuComponent, MenuItemComponent],
+    providers: [MenuService]
 })
 export class MenuModule { }
