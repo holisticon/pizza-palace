@@ -10,7 +10,7 @@
 <div>
     Total: <span class="font-weight-bold">{{ totalPrice | async | currency:'EUR'}}</span>
 </div>
-<button class="btn shadow-sm btn-success" (click)="onCheckout()" [disabled]="isCheckingOut | async">
+<button class="btn shadow-sm btn-danger" (click)="onCheckout()" [disabled]="isCheckingOut | async">
     <span *ngIf="isCheckingOut | async" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
     Checkout
 </button>
