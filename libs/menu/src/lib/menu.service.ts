@@ -2,6 +2,7 @@ import { Observable } from 'rxjs';
 import { Pizza } from '@pizza-palace/pizza-shared';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { delay } from 'rxjs/operators';
 
 @Injectable()
 export class MenuService {
@@ -11,6 +12,8 @@ export class MenuService {
     ) { }
 
     getPizzas(): Observable<Pizza[]> {
-        return this.httpClient.get<Pizza[]>('/assets/pizza.json');
+        return this.httpClient.get<Pizza[]>('/assets/pizza.json').pipe(
+            delay(2000)
+        );
     }
 }

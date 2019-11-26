@@ -22,7 +22,6 @@ export class MenuComponent {
         private menuService: MenuService
     ) {
         this.pizzas = this.menuService.getPizzas().pipe(
-            delay(2000),
             tap(() => this.isLoading = false)
         );
     }
