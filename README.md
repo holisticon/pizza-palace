@@ -2,9 +2,21 @@
 
 An example Angular application that uses [Nx Workspace](https://nx.dev) and [Ngrx](https://ngrx.io) to show how to build modularized frontends in a monorepo.
 
+## Architecture Overview
 
+The basic building blocks of this architecture blueprint are web and/or mobile applications, feature libraries and standalone shared libraries.
 
 ![Diagram](docs/diagram.svg)
+
+### Feature Library
+A feature library is the glue between a feature provided by a microservice and the consuming web or mobile application. It exposes the functionality of that service in form of injectable services or even complete UI components. It is built by same team that maintains the rest of the microservice.
+
+### Shared Library
+A shared library contains features that are not directly related to the business features provided by microservices. These may be general-purpose UI elements, helper functions, wrapper for third-party libraries, etc.
+
+### Web / Mobile Application
+Web or mobile appliations are the consumers of feature libraries and shared libraries and combine these with application-specific features to build the deployable artefact that is used by the end user. The application itself consists of feature modules and common modules. Feature modules implement the business requirements of the application which are not provided via feature librarys. Common modules are the application-specific equivalent of shared libraries and contain code that is shared among the various feature modules but is specific to the application.
+
 
 ## Modularization
 This section describes the technical foundation of the artefacts described in the architecture overview.
