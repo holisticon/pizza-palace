@@ -8,6 +8,15 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 describe('OrderItemComponent', () => {
     let component: OrderItemComponent;
     let fixture: ComponentFixture<OrderItemComponent>;
+    const item: OrderItem = {
+        pizza: {
+            image: '',
+            ingredients: '',
+            name: 'Salami',
+            price: 1.00
+        },
+        size: PizzaSize.M
+    };
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -20,6 +29,7 @@ describe('OrderItemComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(OrderItemComponent);
         component = fixture.componentInstance;
+        component.item = item;
         fixture.detectChanges();
     });
 
@@ -29,15 +39,6 @@ describe('OrderItemComponent', () => {
 
     it('emits on onRemoveItem', () => {
         const emitSpy = spyOn(component.remove, 'emit');
-        const item: OrderItem = {
-            pizza: {
-                image: '',
-                ingredients: '',
-                name: 'Salami',
-                price: 1.00
-            },
-            size: PizzaSize.M
-        };
 
         component.onRemoveItem(item);
 
