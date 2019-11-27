@@ -1,11 +1,9 @@
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
-import { provideMockStore } from '@ngrx/store/testing';
 import { Observable } from 'rxjs';
-import { OrderEffects } from './order.effects';
-import { hot } from 'jest-marbles';
-import { checkoutOrder, checkoutOrderSuccess } from './order.actions';
 import { TestScheduler } from 'rxjs/internal/testing/TestScheduler';
+import { checkoutOrder, checkoutOrderSuccess } from './order.actions';
+import { OrderEffects } from './order.effects';
 
 describe('OrderEffects', () => {
     let actions: Observable<any>;
@@ -29,6 +27,7 @@ describe('OrderEffects', () => {
 
     describe('checkoutOrder', () => {
         it('returns checkoutOrderSuccess after 2 seconds', () => {
+            // Use TestScheduler to test delayed effect
             testScheduler.run(({ cold, expectObservable }) => {
                     actions = cold('a', { a: checkoutOrder() });
 
