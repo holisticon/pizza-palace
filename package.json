@@ -65,6 +65,7 @@
     "eslint": "6.1.0",
     "jasmine-marbles": "0.6.0",
     "jest": "24.1.0",
+    "jest-marbles": "2.5.0",
     "jest-preset-angular": "7.0.0",
     "prettier": "1.18.2",
     "ts-jest": "24.0.0",
