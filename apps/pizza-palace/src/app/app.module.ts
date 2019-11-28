@@ -8,6 +8,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { storeLogger } from 'ngrx-store-logger';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
+import { NavigationComponent } from './navigation/navigation.component';
 
 export function logger(reducer: ActionReducer<any>): any {
     // default, no options
@@ -18,7 +19,7 @@ export function logger(reducer: ActionReducer<any>): any {
 
 
 @NgModule({
-    declarations: [AppComponent],
+    declarations: [AppComponent, NavigationComponent],
     imports: [
         BrowserModule,
         StoreModule.forRoot({}, {
