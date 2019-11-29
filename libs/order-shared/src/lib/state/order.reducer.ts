@@ -1,6 +1,6 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import { OrderItem } from '../order.model';
-import { addToOrder } from './order.actions';
+import { addToOrder, checkoutOrderSuccess, removeFromOrder } from './order.actions';
 
 export const ORDER_FEATURE_KEY = 'order';
 
@@ -21,6 +21,15 @@ const orderReducer = createReducer(
     on(addToOrder, (state, { item }) => ({
         ...state,
         items: [...state.items, item]
+    })),
+    on(removeFromOrder, (state, { item }) => ({
+        ...state,
+        items: state.items.filter(it => it !== item),
+
+    })),
+    on(checkoutOrderSuccess, (state) => ({
+        ...state,
+        items: []
     }))
 );
 
