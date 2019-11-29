@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { OrderItem, OrderPartialState, selectOrderItems, selectTotalPrice } from '@pizza-palace/order-shared';
+import { checkoutOrder, OrderItem, OrderPartialState, removeFromOrder, selectOrderItems, selectTotalPrice } from '@pizza-palace/order-shared';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -22,10 +22,10 @@ export class OrderComponent {
     }
 
     onRemove(item: OrderItem) {
-        console.log('Remove Item', item);
+        this.store.dispatch(removeFromOrder({ item }));
     }
 
     onCheckout() {
-        console.log('Checkout Order');
+        this.store.dispatch(checkoutOrder());
     }
 }

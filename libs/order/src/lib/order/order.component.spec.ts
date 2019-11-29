@@ -2,8 +2,9 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Store } from '@ngrx/store';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
-import { OrderItem, selectOrderItems, selectTotalPrice } from '@pizza-palace/order-shared';
+import { checkoutOrder, OrderItem, removeFromOrder, selectOrderItems, selectTotalPrice } from '@pizza-palace/order-shared';
 import { PizzaSize } from '@pizza-palace/pizza-shared';
+import { hot } from 'jasmine-marbles';
 import { OrderComponent } from './order.component';
 
 describe('OrderComponent', () => {
@@ -65,4 +66,29 @@ describe('OrderComponent', () => {
         expect(component).toBeTruthy();
     });
 
+    it('dispatches a removeFromOrder on onRemove', () => {
+        const item: OrderItem = {
+            pizza: {
+                image: '',
+                ingredients: '',
+                name: 'Salami',
+                price: 1.00
+            },
+            size: PizzaSize.M
+        };
+
+        component.onRemove(item);
+
+        const expected = hot('a', { a: removeFromOrder({ item }) });
+
+        expect(store.scannedActions$).toBeObservable(expected);
+    });
+
+    it('dispatches a checkoutOrder on onCheckout', () => {
+        component.onCheckout();
+
+        const expected = hot('a', { a: checkoutOrder() });
+
+        expect(store.scannedActions$).toBeObservable(expected);
+    });
 });
