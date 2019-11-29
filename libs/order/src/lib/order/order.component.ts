@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { pizzas } from '../pizza/pizza.data';
-import { PizzaSize } from '../pizza/pizza.model';
+import { pizzas, PizzaSize } from '@pizza-palace/pizza-shared';
 import { OrderItem } from './order.model';
 
 @Component({

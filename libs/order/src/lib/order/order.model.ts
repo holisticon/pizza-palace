@@ -1,4 +1,4 @@
-import { Pizza, PizzaSize } from '../pizza/pizza.model';
+import { Pizza, PizzaSize } from '@pizza-palace/pizza-shared';
 
 export interface OrderItem {
     pizza: Pizza;
