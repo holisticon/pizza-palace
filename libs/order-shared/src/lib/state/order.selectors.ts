@@ -1,5 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { ORDER_FEATURE_KEY, OrderPartialState, OrderState } from './order.reducer';
+import { toTotalPrice } from '../../order';
 
 export const getOrderState = createFeatureSelector<OrderPartialState, OrderState>(
     ORDER_FEATURE_KEY
@@ -12,7 +13,7 @@ export const selectOrderItems = createSelector(
 
 export const selectTotalPrice = createSelector(
     selectOrderItems,
-    items => items.reduce((total, item) => total + item.pizza.price, 0)
+    items => toTotalPrice(items)
 );
 
 export const selectQuantity = createSelector(
