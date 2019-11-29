@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { toTotalPrice } from '../order';
 import { OrderPartialState } from '../state/order.reducer';
 import { selectOrderItems } from '../state/order.selectors';
 
@@ -25,10 +26,7 @@ export class CurrentOrderComponent {
             map(items => items.length)
         );
         this.totalPrice = orderItems$.pipe(
-            map(orderItems => orderItems.reduce(
-                (sum, item) => sum + item.pizza.price,
-                0
-            ))
+            map(toTotalPrice)
         );
     }
 }

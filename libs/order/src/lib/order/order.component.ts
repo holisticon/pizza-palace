@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { OrderItem, OrderPartialState, selectOrderItems } from '@pizza-palace/order-shared';
+import { OrderItem, OrderPartialState, selectOrderItems, toTotalPrice } from '@pizza-palace/order-shared';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -20,10 +20,7 @@ export class OrderComponent {
     ) {
         this.orderItems = this.store.select(selectOrderItems);
         this.totalPrice = this.orderItems.pipe(
-            map(orderItems => orderItems.reduce(
-                (sum, item) => sum + item.pizza.price,
-                0
-            ))
+            map(toTotalPrice)
         );
     }
 
