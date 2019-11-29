@@ -1,10 +1,8 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { toTotalPrice } from '../order';
 import { OrderPartialState } from '../state/order.reducer';
-import { selectOrderItems } from '../state/order.selectors';
+import { selectQuantity, selectTotalPrice } from '../state/order.selectors';
 
 @Component({
     selector: 'pp-current-order',
@@ -21,12 +19,7 @@ export class CurrentOrderComponent {
     constructor(
         private store: Store<OrderPartialState>
     ) {
-        const orderItems$ = this.store.select(selectOrderItems);
-        this.quantity = orderItems$.pipe(
-            map(items => items.length)
-        );
-        this.totalPrice = orderItems$.pipe(
-            map(toTotalPrice)
-        );
+        this.quantity = this.store.select(selectQuantity);
+        this.totalPrice = this.store.select(selectTotalPrice);
     }
 }

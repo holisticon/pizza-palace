@@ -1,7 +1,8 @@
 import { PizzaSize } from '@pizza-palace/pizza-shared';
+import { toTotalPrice } from '../order';
 import { OrderItem } from '../order.model';
 import { initialState, OrderPartialState, OrderState, ORDER_FEATURE_KEY } from "./order.reducer";
-import { getOrderState, selectOrderItems } from './order.selectors';
+import { getOrderState, selectOrderItems, selectQuantity, selectTotalPrice } from './order.selectors';
 
 describe('orderSelectors', () => {
     const items: OrderItem[] = [
@@ -40,6 +41,19 @@ describe('orderSelectors', () => {
                 items
             };
             expect(selectOrderItems.projector(state)).toBe(items);
+        });
+    });
+
+    describe('selectTotalPrice', () => {
+        it('returns the total price', () => {
+
+            expect(selectTotalPrice.projector(items)).toBe(toTotalPrice(items));
+        });
+    });
+
+    describe('selectQuantity', () => {
+        it('returns the number of order items', () => {
+            expect(selectQuantity.projector(items)).toBe(items.length);
         });
     });
 });

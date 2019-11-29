@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { OrderItem, OrderPartialState, selectOrderItems, toTotalPrice } from '@pizza-palace/order-shared';
+import { OrderItem, OrderPartialState, selectOrderItems, selectTotalPrice } from '@pizza-palace/order-shared';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 @Component({
     selector: 'pp-order',
@@ -19,9 +18,7 @@ export class OrderComponent {
         private store: Store<OrderPartialState>
     ) {
         this.orderItems = this.store.select(selectOrderItems);
-        this.totalPrice = this.orderItems.pipe(
-            map(toTotalPrice)
-        );
+        this.totalPrice = this.store.select(selectTotalPrice);
     }
 
     onRemove(item: OrderItem) {
