@@ -3,7 +3,7 @@ import { addToOrder, removeFromOrder, checkoutOrder, checkoutOrderSuccess } from
 import { OrderItem } from '../order.model';
 import { PizzaSize } from '@pizza-palace/pizza-shared';
 
-describe('Order Reducer', () => {
+describe('orderReducer', () => {
 
     const item: OrderItem = {
         pizza: {
@@ -16,7 +16,7 @@ describe('Order Reducer', () => {
     }
 
     describe('unknown action', () => {
-        it('should return the previous state', () => {
+        it('unknown action returns the previous state', () => {
             const action = {} as any;
 
             const result = reducer(initialState, action);
@@ -25,37 +25,43 @@ describe('Order Reducer', () => {
         });
     });
 
-    it('addToOrder adds item to order', () => {
-        const action = addToOrder({ item });
-        const state = reducer(initialState, action);
+    describe('addToOrder', () => {
+        it('adds the item to the order', () => {
+            const action = addToOrder({ item });
+            const state = reducer(initialState, action);
 
-        expect(state.items.includes(item)).toBe(true);
+            expect(state.items.includes(item)).toBe(true);
+        });
     });
 
-    it('removeFromOrder removes item from order', () => {
-        const filledState: OrderState = {
-            ...initialState,
-            items: [item]
-        };
-        const action = removeFromOrder({ item });
-        const state = reducer(filledState, action);
+    describe('removeFromOrder', () => {
+        it('removes the item from the order', () => {
+            const filledState: OrderState = {
+                ...initialState,
+                items: [item]
+            };
+            const action = removeFromOrder({ item });
+            const state = reducer(filledState, action);
 
-        expect(state.items.includes(item)).toBe(false);
-        expect(state.items.length).toBe(0);
+            expect(state.items.includes(item)).toBe(false);
+            expect(state.items.length).toBe(0);
+        });
     });
 
-    it('checkoutOrder sets isCheckingOut true', () => {
-        const action = checkoutOrder();
-        const state = reducer(initialState, action);
+    describe('checkoutOrder', () => {
+        it('sets isCheckingOut to true', () => {
+            const action = checkoutOrder();
+            const state = reducer(initialState, action);
 
-        expect(initialState.isCheckingOut).toBe(false);
-        expect(state.isCheckingOut).toBe(true);
+            expect(initialState.isCheckingOut).toBe(false);
+            expect(state.isCheckingOut).toBe(true);
+        });
     });
 
     describe('checkoutOrderSuccess', () => {
         const action = checkoutOrderSuccess();
 
-        it('sets isCheckingout false', () => {
+        it('sets isCheckingOut to false', () => {
             const filledState: OrderState = {
                 ...initialState,
                 isCheckingOut: true
@@ -64,7 +70,7 @@ describe('Order Reducer', () => {
             expect(state.isCheckingOut).toBe(false);
         });
 
-        it('empties item list', () => {
+        it('empties the item list', () => {
             const filledState: OrderState = {
                 ...initialState,
                 items: [item]

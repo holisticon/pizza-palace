@@ -27,7 +27,7 @@ describe('OrderEffects', () => {
 
     describe('checkoutOrder', () => {
         it('returns checkoutOrderSuccess after 2 seconds', () => {
-            // Use TestScheduler to test delayed effect
+            // use TestScheduler to test delayed effect
             testScheduler.run(({ cold, expectObservable }) => {
                 actions = cold('a', { a: checkoutOrder() });
 

@@ -1,8 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { CurrentOrderComponent } from './current-order.component';
 import { provideMockStore } from '@ngrx/store/testing';
 import { selectQuantity, selectTotalPrice } from '../state/order.selectors';
+import { By } from '@angular/platform-browser';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 describe('CurrentOrderComponent', () => {
     let component: CurrentOrderComponent;
@@ -24,7 +25,8 @@ describe('CurrentOrderComponent', () => {
                         }
                     ]
                 })
-            ]
+            ],
+            schemas: [CUSTOM_ELEMENTS_SCHEMA]
         })
             .compileComponents();
     }));
@@ -35,7 +37,11 @@ describe('CurrentOrderComponent', () => {
         fixture.detectChanges();
     });
 
-    it('should create', () => {
-        expect(component).toBeTruthy();
+    it('renders the current order', () => {
+        const quantity = fixture.debugElement.queryAll(By.css('span'))[1].nativeElement.textContent;
+        const totalPrice = fixture.debugElement.query(By.css('pp-price')).nativeElement.price;
+
+        expect(quantity).toBe('1 Pizzas');
+        expect(totalPrice).toBe(100);
     });
 });
