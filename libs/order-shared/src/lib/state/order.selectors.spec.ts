@@ -2,7 +2,7 @@ import { PizzaSize } from '@pizza-palace/pizza-shared';
 import { toTotalPrice } from '../order';
 import { OrderItem } from '../order.model';
 import { initialState, OrderPartialState, OrderState, ORDER_FEATURE_KEY } from "./order.reducer";
-import { getOrderState, selectOrderItems, selectQuantity, selectTotalPrice } from './order.selectors';
+import { getOrderState, selectIsCheckingOut, selectOrderItems, selectQuantity, selectTotalPrice } from './order.selectors';
 
 describe('orderSelectors', () => {
     const items: OrderItem[] = [
@@ -54,6 +54,22 @@ describe('orderSelectors', () => {
     describe('selectQuantity', () => {
         it('returns the number of order items', () => {
             expect(selectQuantity.projector(items)).toBe(items.length);
+        });
+    });
+
+    describe('selectIsCheckingOut', () => {
+        it('returns whether the order is currently being checked out', () => {
+            const trueState: Partial<OrderState> = {
+                isCheckingOut: true
+            };
+
+            expect(selectIsCheckingOut.projector(trueState)).toBe(true);
+
+            const falseState: Partial<OrderState> = {
+                isCheckingOut: false
+            };
+
+            expect(selectIsCheckingOut.projector(falseState)).toBe(false);
         });
     });
 });

@@ -1,7 +1,7 @@
-import { PizzaSize } from '@pizza-palace/pizza-shared';
+import { initialState, reducer, OrderState } from './order.reducer';
+import { addToOrder, removeFromOrder, checkoutOrder, checkoutOrderSuccess } from './order.actions';
 import { OrderItem } from '../order.model';
-import { addToOrder, checkoutOrderSuccess, removeFromOrder } from './order.actions';
-import { initialState, OrderState, reducer } from './order.reducer';
+import { PizzaSize } from '@pizza-palace/pizza-shared';
 
 describe('orderReducer', () => {
 
@@ -48,14 +48,26 @@ describe('orderReducer', () => {
         });
     });
 
+    describe('checkoutOrder', () => {
+        it('sets isCheckingOut to true', () => {
+            const action = checkoutOrder();
+            const state = reducer(initialState, action);
+
+            expect(initialState.isCheckingOut).toBe(false);
+            expect(state.isCheckingOut).toBe(true);
+        });
+    });
+
     describe('checkoutOrderSuccess', () => {
         const action = checkoutOrderSuccess();
 
         it('sets isCheckingOut to false', () => {
             const filledState: OrderState = {
                 ...initialState,
+                isCheckingOut: true
             };
             const state = reducer(filledState, action);
+            expect(state.isCheckingOut).toBe(false);
         });
 
         it('empties the item list', () => {

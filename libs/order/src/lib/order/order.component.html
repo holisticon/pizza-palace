@@ -7,5 +7,8 @@
         Total:
         <pp-price [price]="totalPrice | async"></pp-price>
     </div>
-    <button class="btn shadow-sm btn-danger" (click)="onCheckout()">💸 Checkout</button>
+    <button class="btn shadow-sm btn-danger" (click)="onCheckout()" [disabled]="isCheckingOut | async">
+        <span *ngIf="isCheckingOut | async" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        💸 Checkout
+    </button>
 </div>

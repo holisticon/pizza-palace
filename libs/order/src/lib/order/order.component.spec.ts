@@ -2,7 +2,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Store } from '@ngrx/store';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
-import { checkoutOrder, OrderItem, removeFromOrder, selectOrderItems, selectTotalPrice } from '@pizza-palace/order-shared';
+import { checkoutOrder, OrderItem, removeFromOrder, selectIsCheckingOut, selectOrderItems, selectTotalPrice } from '@pizza-palace/order-shared';
 import { PizzaSize } from '@pizza-palace/pizza-shared';
 import { hot } from 'jasmine-marbles';
 import { OrderComponent } from './order.component';
@@ -46,6 +46,10 @@ describe('OrderComponent', () => {
                         {
                             selector: selectTotalPrice,
                             value: 1.00
+                        },
+                        {
+                            selector: selectIsCheckingOut,
+                            value: false
                         }
                     ]
                 })
