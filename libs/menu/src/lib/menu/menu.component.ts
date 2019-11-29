@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { addToOrder, OrderItem } from '@pizza-palace/order-shared';
-import { Pizza, PizzaSize } from '@pizza-palace/pizza-shared';
+import { Pizza } from '@pizza-palace/pizza-shared';
 import { MenuService } from '../menu.service';
 
 @Component({
@@ -10,8 +10,6 @@ import { MenuService } from '../menu.service';
     styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent {
-
-    pizzaSizes = PizzaSize;
 
     pizzas: Pizza[] = [];
 

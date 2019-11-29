@@ -1,0 +1,12 @@
+<div class="card shadow-sm">
+    <div class="card-body row justify-content-between align-items-center m-0">
+        <pp-pizza class="col-8" [pizza]="pizza"></pp-pizza>
+        <div class="col-4 text-right">
+            <div class="btn-group shadow-sm" role="group">
+                <button class="btn btn-outline-danger" (click)="onAddToOrder(pizza, pizzaSizes.S)">S</button>
+                <button class="btn btn-outline-danger" (click)="onAddToOrder(pizza, pizzaSizes.M)">M</button>
+                <button class="btn btn-outline-danger" (click)="onAddToOrder(pizza, pizzaSizes.L)">L</button>
+            </div>
+        </div>
+    </div>
+</div>

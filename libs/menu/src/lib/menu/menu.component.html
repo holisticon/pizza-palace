@@ -3,35 +3,8 @@
     <pp-current-order></pp-current-order>
 </div>
 
-<div class="d-flex justify-content-center" *ngIf="isLoading">
-    <div class="spinner-border text-danger" role="status">
-        <span class="sr-only">Loading...</span>
-    </div>
-</div>
+<pp-loading-spinner *ngIf="isLoading"></pp-loading-spinner>
 
-<ul class="list-unstyled">
-    <li class="mb-3" *ngFor="let pizza of pizzas">
-        <div class="card shadow-sm">
-            <div class="card-body row justify-content-between align-items-center m-0">
-                <div class="col-8 media">
-                    <img [src]="pizza.image" class="mr-3 rounded" [alt]="pizza.name" height="80">
-                    <div class="media-body">
-                        <h5 class="m-0">{{ pizza.name }}</h5>
-                        <small class="text-muted">{{ pizza.ingredients }}</small>
-                        <strong class="d-block">{{ pizza.price | currency:'EUR' }}</strong>
-                    </div>
-                </div>
-
-                <div class="col-4 text-right">
-                    <div class="btn-group shadow-sm" role="group">
-                        <button class="btn btn-outline-danger" (click)="onAddToOrder({ pizza: pizza, size: pizzaSizes.S })">S</button>
-                        <button class="btn btn-outline-danger" (click)="onAddToOrder({ pizza: pizza, size: pizzaSizes.M })">M</button>
-                        <button class="btn btn-outline-danger" (click)="onAddToOrder({ pizza: pizza, size: pizzaSizes.L })">L</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </li>
-</ul>
+<pp-menu-list [pizzas]="pizzas" (addToOrder)="onAddToOrder($event)"></pp-menu-list>
 
 <a routerLink="/order" class="float-right btn btn-outline-primary">🛒 Go to Checkout</a>
