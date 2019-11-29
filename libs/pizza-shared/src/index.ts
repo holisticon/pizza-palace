@@ -1,2 +1,2 @@
 export * from './lib/pizza-shared.module';
-export * from './lib/pizza.model';
+export { Pizza, PizzaSize } from './lib/pizza.model';

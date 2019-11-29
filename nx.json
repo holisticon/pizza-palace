@@ -8,19 +8,16 @@
     "nx.json": "*"
   },
   "projects": {
-    "pizza-palace-e2e": {
+    "pizza-palace": {
       "tags": []
     },
-    "pizza-palace": {
+    "order": {
       "tags": []
     },
     "menu": {
       "tags": []
     },
     "pizza-shared": {
-      "tags": []
-    },
-    "order": {
       "tags": []
     },
     "order-shared": {

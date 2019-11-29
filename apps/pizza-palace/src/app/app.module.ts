@@ -1,13 +1,12 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
-
-import { AppComponent } from './app.component';
-import { StoreModule, ActionReducer } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { storeLogger } from 'ngrx-store-logger';
+import { ActionReducer, StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { storeLogger } from 'ngrx-store-logger';
 import { environment } from '../environments/environment';
+import { AppComponent } from './app.component';
 import { NavigationComponent } from './navigation/navigation.component';
 
 export function logger(reducer: ActionReducer<any>): any {
@@ -17,9 +16,11 @@ export function logger(reducer: ActionReducer<any>): any {
 
   export const metaReducers = environment.production ? [] : [logger];
 
-
 @NgModule({
-    declarations: [AppComponent, NavigationComponent],
+    declarations: [
+        AppComponent,
+        NavigationComponent
+    ],
     imports: [
         BrowserModule,
         StoreModule.forRoot({}, {

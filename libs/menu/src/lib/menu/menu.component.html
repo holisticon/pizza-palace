@@ -3,7 +3,7 @@
     <pp-current-order></pp-current-order>
 </div>
 
-<pp-loading-spinner *ngIf="isLoading"></pp-loading-spinner>
+<pp-loading-spinner *ngIf="isLoading | async"></pp-loading-spinner>
 
 <pp-menu-list [pizzas]="pizzas | async" (addToOrder)="onAddToOrder($event)"></pp-menu-list>
 

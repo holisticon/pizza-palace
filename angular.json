@@ -97,30 +97,34 @@
         }
       }
     },
-    "pizza-palace-e2e": {
-      "root": "apps/pizza-palace-e2e",
-      "sourceRoot": "apps/pizza-palace-e2e/src",
-      "projectType": "application",
+    "order": {
+      "projectType": "library",
+      "root": "libs/order",
+      "sourceRoot": "libs/order/src",
+      "prefix": "pp",
       "architect": {
-        "e2e": {
-          "builder": "@nrwl/cypress:cypress",
-          "options": {
-            "cypressConfig": "apps/pizza-palace-e2e/cypress.json",
-            "tsConfig": "apps/pizza-palace-e2e/tsconfig.e2e.json",
-            "devServerTarget": "pizza-palace:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "pizza-palace:serve:production"
-            }
-          }
-        },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/pizza-palace-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/pizza-palace-e2e/**"]
+            "tsConfig": [
+              "libs/order/tsconfig.lib.json",
+              "libs/order/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/order/**"]
           }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/order/jest.config.js",
+            "tsConfig": "libs/order/tsconfig.spec.json",
+            "setupFile": "libs/order/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
         }
       }
     },
@@ -177,37 +181,6 @@
             "jestConfig": "libs/pizza-shared/jest.config.js",
             "tsConfig": "libs/pizza-shared/tsconfig.spec.json",
             "setupFile": "libs/pizza-shared/src/test-setup.ts"
-          }
-        }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "styleext": "scss"
-        }
-      }
-    },
-    "order": {
-      "projectType": "library",
-      "root": "libs/order",
-      "sourceRoot": "libs/order/src",
-      "prefix": "pp",
-      "architect": {
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/order/tsconfig.lib.json",
-              "libs/order/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/order/**"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "libs/order/jest.config.js",
-            "tsConfig": "libs/order/tsconfig.spec.json",
-            "setupFile": "libs/order/src/test-setup.ts"
           }
         }
       },
