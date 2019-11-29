@@ -16,13 +16,14 @@ Modularization of Angular projects using Nx Workspace.
 
 Best practices for maintainable, reusable components.
 
-> Keep components small.
+> Differentiate between presentational and container components.
 
-> Keep business logic out of components.
+> Keep components small.
 
 > Keep components stateless.
 
-> Differentiate between presentational and container components.
+> Keep business logic out of components.
+
 
 ## State Management
 
