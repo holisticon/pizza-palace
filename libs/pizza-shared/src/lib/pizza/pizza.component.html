@@ -1,0 +1,8 @@
+<div class="media">
+    <img [src]="pizza.image" class="mr-3 rounded" [alt]="pizza.name" height="80">
+    <div class="media-body">
+        <h5 class="m-0">{{ pizza.name }}</h5>
+        <small class="text-muted">{{ pizza.ingredients }}</small>
+        <pp-price class="d-block" [price]="pizza.price"></pp-price>
+    </div>
+</div>
