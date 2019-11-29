@@ -15,12 +15,7 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {
-      "@pizza-palace/menu": ["libs/menu/src/index.ts"],
-      "@pizza-palace/pizza-shared": ["libs/pizza-shared/src/index.ts"],
-      "@pizza-palace/order": ["libs/order/src/index.ts"],
-      "@pizza-palace/order-shared": ["libs/order-shared/src/index.ts"]
-    }
+    "paths": {}
   },
   "exclude": ["node_modules", "tmp"]
 }

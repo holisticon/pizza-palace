@@ -1,14 +1,13 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
-
-import { AppComponent } from './app.component';
-import { StoreModule, ActionReducer } from '@ngrx/store';
-import { EffectsModule } from '@ngrx/effects';
+import { ActionReducer } from '@ngrx/store';
 import { storeLogger } from 'ngrx-store-logger';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
+import { AppComponent } from './app.component';
+import { MenuComponent } from './menu/menu.component';
 import { NavigationComponent } from './navigation/navigation.component';
+import { OrderComponent } from './order/order.component';
 
 export function logger(reducer: ActionReducer<any>): any {
     // default, no options
@@ -17,24 +16,15 @@ export function logger(reducer: ActionReducer<any>): any {
 
   export const metaReducers = environment.production ? [] : [logger];
 
-
 @NgModule({
-    declarations: [AppComponent, NavigationComponent],
+    declarations: [
+        AppComponent,
+        NavigationComponent,
+        MenuComponent,
+        OrderComponent
+    ],
     imports: [
         BrowserModule,
-        StoreModule.forRoot({}, {
-            metaReducers,
-            runtimeChecks: {
-                strictActionImmutability: true,
-                strictActionSerializability: true,
-                strictStateImmutability: true,
-                strictStateSerializability: true
-            }
-        }),
-        EffectsModule.forRoot([]),
-        StoreDevtoolsModule.instrument({
-            logOnly: environment.production
-          }),
         RouterModule.forRoot([
             {
                 path: '',
@@ -43,11 +33,11 @@ export function logger(reducer: ActionReducer<any>): any {
             },
             {
                 path: 'menu',
-                loadChildren: () => import('@pizza-palace/menu').then(m => m.MenuModule)
+                component: MenuComponent
             },
             {
                 path: 'order',
-                loadChildren: () => import('@pizza-palace/order').then(m => m.OrderModule)
+                component: OrderComponent
             }
         ])
     ],
