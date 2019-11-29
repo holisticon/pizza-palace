@@ -10,6 +10,15 @@
   "projects": {
     "pizza-palace": {
       "tags": []
+    },
+    "order": {
+      "tags": []
+    },
+    "menu": {
+      "tags": []
+    },
+    "pizza-shared": {
+      "tags": []
     }
   }
 }
