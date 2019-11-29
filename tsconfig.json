@@ -18,7 +18,8 @@
     "paths": {
       "@pizza-palace/order": ["libs/order/src/index.ts"],
       "@pizza-palace/menu": ["libs/menu/src/index.ts"],
-      "@pizza-palace/pizza-shared": ["libs/pizza-shared/src/index.ts"]
+      "@pizza-palace/pizza-shared": ["libs/pizza-shared/src/index.ts"],
+      "@pizza-palace/order-shared": ["libs/order-shared/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
