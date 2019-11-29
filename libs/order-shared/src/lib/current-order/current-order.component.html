@@ -1,4 +1,4 @@
 <span>Your Order:</span>
 <span class="ml-3">{{ quantity | async }} Pizzas</span>
 <span class="mx-3">|</span>
-<span class="font-weight-bold">{{ totalPrice | async | currency:'EUR' }}</span>
+<pp-price [price]="totalPrice | async"></pp-price>

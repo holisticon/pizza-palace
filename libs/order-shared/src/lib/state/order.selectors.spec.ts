@@ -1,7 +1,7 @@
-import { OrderPartialState, ORDER_FEATURE_KEY, initialState, OrderState } from "./order.reducer";
-import { getOrderState, selectOrderItems, selectTotalPrice, selectQuantity, selectIsCheckingOut } from './order.selectors';
-import { OrderItem } from '../order.model';
 import { PizzaSize } from '@pizza-palace/pizza-shared';
+import { OrderItem } from '../order.model';
+import { initialState, ORDER_FEATURE_KEY, OrderPartialState, OrderState } from "./order.reducer";
+import { getOrderState, selectIsCheckingOut, selectOrderItems, selectQuantity, selectTotalPrice } from './order.selectors';
 
 describe('Order Selectors', () => {
 
@@ -27,7 +27,7 @@ describe('Order Selectors', () => {
 
         const state: Partial<OrderState> = {
             items
-        }
+        };
         expect(selectOrderItems.projector(state)).toBe(items);
     });
 

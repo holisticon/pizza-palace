@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { Pizza } from '@pizza-palace/pizza-shared';
-import { Observable, of } from 'rxjs';
-import { OrderItem, addToOrder } from '@pizza-palace/order-shared';
 import { Store } from '@ngrx/store';
+import { addToOrder, OrderItem } from '@pizza-palace/order-shared';
+import { Pizza } from '@pizza-palace/pizza-shared';
+import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { MenuService } from '../menu.service';
-import { tap, delay } from 'rxjs/operators';
 
 @Component({
     selector: 'pp-menu',

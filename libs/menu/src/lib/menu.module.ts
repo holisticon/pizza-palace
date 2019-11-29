@@ -7,6 +7,8 @@ import { PizzaSharedModule } from '@pizza-palace/pizza-shared';
 import { OrderSharedModule } from '@pizza-palace/order-shared';
 import { MenuService } from './menu.service';
 import { HttpClientModule } from '@angular/common/http';
+import { MenuListComponent } from './menu/menu-list/menu-list.component';
+import { LoadingSpinnerComponent } from './menu/loading-spinner/loading-spinner.component';
 
 @NgModule({
     imports: [
@@ -22,7 +24,7 @@ import { HttpClientModule } from '@angular/common/http';
         PizzaSharedModule,
         OrderSharedModule
     ],
-    declarations: [MenuComponent, MenuItemComponent],
+    declarations: [MenuComponent, MenuItemComponent, MenuListComponent, LoadingSpinnerComponent],
     providers: [MenuService]
 })
 export class MenuModule { }

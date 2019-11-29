@@ -13,7 +13,7 @@ export class MenuService {
 
     getPizzas(): Observable<Pizza[]> {
         return this.httpClient.get<Pizza[]>('/assets/pizza.json').pipe(
-            delay(2000)
+            delay(200)
         );
     }
 }

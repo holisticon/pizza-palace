@@ -14,7 +14,7 @@ export class CurrentOrderComponent {
 
     quantity: Observable<number>;
 
-    totalPrice: Observable<number>
+    totalPrice: Observable<number>;
 
     constructor(
         private store: Store<OrderPartialState>

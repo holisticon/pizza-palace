@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { OrderItem, OrderPartialState, selectOrderItems, removeFromOrder, selectTotalPrice, checkoutOrder, selectIsCheckingOut } from '@pizza-palace/order-shared';
-import { PizzaSize } from '@pizza-palace/pizza-shared';
-import { Observable, of } from 'rxjs';
 import { Store } from '@ngrx/store';
+import { checkoutOrder, OrderItem, OrderPartialState, removeFromOrder, selectIsCheckingOut, selectOrderItems, selectTotalPrice } from '@pizza-palace/order-shared';
+import { Observable } from 'rxjs';
 
 @Component({
     selector: 'pp-order',

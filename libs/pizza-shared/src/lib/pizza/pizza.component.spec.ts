@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { PizzaComponent } from './pizza.component';
 import { Pizza } from '../pizza.model';
+import { PizzaComponent } from './pizza.component';
 
 
 describe('PizzaComponent', () => {
@@ -12,7 +12,7 @@ describe('PizzaComponent', () => {
         ingredients: '',
         name: 'Salami',
         price: 1.00
-    }
+    };
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({

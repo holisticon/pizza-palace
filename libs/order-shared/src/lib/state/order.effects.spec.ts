@@ -29,12 +29,12 @@ describe('OrderEffects', () => {
         it('returns checkoutOrderSuccess after 2 seconds', () => {
             // Use TestScheduler to test delayed effect
             testScheduler.run(({ cold, expectObservable }) => {
-                    actions = cold('a', { a: checkoutOrder() });
+                actions = cold('a', { a: checkoutOrder() });
 
                 expectObservable(effects.checkoutOrder).toBe(
-                    '2s a',
+                    '200ms a',
                     { a: checkoutOrderSuccess() }
-                )
+                );
             });
         });
     });
