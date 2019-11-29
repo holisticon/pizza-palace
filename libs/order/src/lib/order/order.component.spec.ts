@@ -1,19 +1,16 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { provideMockStore, MockStore } from '@ngrx/store/testing';
-
-import { OrderComponent } from './order.component';
-import { selectOrderItems, OrderItem, selectTotalPrice, selectIsCheckingOut, removeFromOrder, checkoutOrder } from '@pizza-palace/order-shared';
-import { PizzaSize } from '@pizza-palace/pizza-shared';
-import { By } from '@angular/platform-browser'
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Store } from '@ngrx/store';
+import { MockStore, provideMockStore } from '@ngrx/store/testing';
+import { checkoutOrder, OrderItem, removeFromOrder, selectIsCheckingOut, selectOrderItems, selectTotalPrice } from '@pizza-palace/order-shared';
+import { PizzaSize } from '@pizza-palace/pizza-shared';
 import { hot } from 'jasmine-marbles';
+import { OrderComponent } from './order.component';
 
 describe('OrderComponent', () => {
     let component: OrderComponent;
     let fixture: ComponentFixture<OrderComponent>;
     let store: MockStore<void>;
-
 
     const orderItems: OrderItem[] = [
         {
@@ -73,11 +70,6 @@ describe('OrderComponent', () => {
         expect(component).toBeTruthy();
     });
 
-    it('renders n order items', () => {
-        const items = fixture.debugElement.queryAll(By.css('pp-order-item'));
-        expect(items.length).toBe(orderItems.length);
-    });
-
     it('dispatches a removeFromOrder on onRemove', () => {
         const item: OrderItem = {
             pizza: {
@@ -91,7 +83,7 @@ describe('OrderComponent', () => {
 
         component.onRemove(item);
 
-        const expected = hot('a', { a: removeFromOrder({ item })});
+        const expected = hot('a', { a: removeFromOrder({ item }) });
 
         expect(store.scannedActions$).toBeObservable(expected);
     });
@@ -99,7 +91,7 @@ describe('OrderComponent', () => {
     it('dispatches a checkoutOrder on onCheckout', () => {
         component.onCheckout();
 
-        const expected = hot('a', { a: checkoutOrder()});
+        const expected = hot('a', { a: checkoutOrder() });
 
         expect(store.scannedActions$).toBeObservable(expected);
     });

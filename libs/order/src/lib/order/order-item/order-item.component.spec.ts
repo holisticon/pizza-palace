@@ -1,9 +1,8 @@
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { OrderItemComponent } from './order-item.component';
 import { OrderItem } from '@pizza-palace/order-shared';
 import { PizzaSize } from '@pizza-palace/pizza-shared';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { OrderItemComponent } from './order-item.component';
 
 describe('OrderItemComponent', () => {
     let component: OrderItemComponent;

@@ -1,14 +1,13 @@
-import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
-
-import { MenuComponent } from './menu.component';
-import { provideMockStore, MockStore } from '@ngrx/store/testing';
-import { Store } from '@ngrx/store';
-import { MenuService } from '../menu.service';
-import { Subject } from 'rxjs';
-import { Pizza, PizzaSize } from '@pizza-palace/pizza-shared';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { OrderItem, addToOrder } from '@pizza-palace/order-shared';
+import { async, ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { Store } from '@ngrx/store';
+import { MockStore, provideMockStore } from '@ngrx/store/testing';
+import { addToOrder, OrderItem } from '@pizza-palace/order-shared';
+import { Pizza, PizzaSize } from '@pizza-palace/pizza-shared';
 import { hot } from 'jasmine-marbles';
+import { Subject } from 'rxjs';
+import { MenuService } from '../menu.service';
+import { MenuComponent } from './menu.component';
 
 describe('MenuComponent', () => {
     let component: MenuComponent;
@@ -28,7 +27,7 @@ describe('MenuComponent', () => {
             name: 'Salami',
             price: 1.00
         }
-    ]
+    ];
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -82,7 +81,7 @@ describe('MenuComponent', () => {
 
         component.onAddToOrder(item);
 
-        const expected = hot('a', { a: addToOrder({ item })});
+        const expected = hot('a', { a: addToOrder({ item }) });
 
         expect(store.scannedActions$).toBeObservable(expected);
     });
