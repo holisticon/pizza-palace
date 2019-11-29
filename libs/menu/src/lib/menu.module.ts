@@ -1,16 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { CurrentOrderComponent } from '@pizza-palace/order';
+import { OrderSharedModule } from '@pizza-palace/order-shared';
 import { MenuComponent } from './menu/menu.component';
 
 @NgModule({
     imports: [
         CommonModule,
-
-        // importing the OrderModule breaks routing 💣
-        // OrderModule,
-
+        OrderSharedModule,
         RouterModule.forChild([
             {
                 path: '',
@@ -20,11 +17,7 @@ import { MenuComponent } from './menu/menu.component';
         ])
     ],
     declarations: [
-        MenuComponent,
-
-        // dirty hack 🪓
-        // don't do this in production
-        CurrentOrderComponent
+        MenuComponent
     ]
 })
 export class MenuModule { }

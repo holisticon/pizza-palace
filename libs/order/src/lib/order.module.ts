@@ -15,12 +15,7 @@ import { OrderComponent } from './order/order.component';
         ])
     ],
     declarations: [
-        OrderComponent,
-        // it's not possible to declare a component twice 💣
-        // CurrentOrderComponent
-    ],
-    exports: [
-        // CurrentOrderComponent
+        OrderComponent
     ]
 })
 export class OrderModule { }

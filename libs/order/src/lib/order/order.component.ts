@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
+import { OrderItem } from '@pizza-palace/order-shared';
 import { pizzas, PizzaSize } from '@pizza-palace/pizza-shared';
-import { OrderItem } from './order.model';
 
 @Component({
     selector: 'pp-order',
