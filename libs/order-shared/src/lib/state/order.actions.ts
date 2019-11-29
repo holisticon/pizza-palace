@@ -14,3 +14,7 @@ export const removeFromOrder = createAction(
 export const checkoutOrder = createAction(
     '[Order] Checkout order'
 );
+
+export const checkoutOrderSuccess = createAction(
+    '[Order] Checkout order success'
+);
