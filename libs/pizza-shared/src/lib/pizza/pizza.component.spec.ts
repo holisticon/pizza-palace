@@ -1,7 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { Pizza } from '../pizza.model';
 import { PizzaComponent } from './pizza.component';
-
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('PizzaComponent', () => {
     let component: PizzaComponent;
@@ -16,7 +17,8 @@ describe('PizzaComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [PizzaComponent]
+            declarations: [PizzaComponent],
+            schemas: [NO_ERRORS_SCHEMA]
         })
             .compileComponents();
     }));
@@ -28,7 +30,15 @@ describe('PizzaComponent', () => {
         fixture.detectChanges();
     });
 
-    it('should create', () => {
-        expect(component).toBeTruthy();
+    it('renders a pizza', () => {
+        const image = fixture.debugElement.query(By.css('img')).nativeElement;
+        const heading = fixture.debugElement.query(By.css('h5')).nativeElement;
+        const text = fixture.debugElement.query(By.css('.text-muted')).nativeElement;
+        const price = fixture.debugElement.query(By.css('pp-price')).nativeElement;
+
+        expect(image.src).toBe(pizza.image);
+        expect(heading.textContent).toBe(pizza.name);
+        expect(text.textContent).toBe(pizza.ingredients);
+        expect(price.price).toBe(pizza.price);
     });
 });
