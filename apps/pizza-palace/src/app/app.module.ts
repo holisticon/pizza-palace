@@ -2,8 +2,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { ActionReducer } from '@ngrx/store';
-import { MenuComponent, MenuModule } from '@pizza-palace/menu';
-import { OrderComponent, OrderModule } from '@pizza-palace/order';
 import { storeLogger } from 'ngrx-store-logger';
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
@@ -23,8 +21,6 @@ export function logger(reducer: ActionReducer<any>): any {
     ],
     imports: [
         BrowserModule,
-        MenuModule,
-        OrderModule,
         RouterModule.forRoot([
             {
                 path: '',
@@ -33,11 +29,11 @@ export function logger(reducer: ActionReducer<any>): any {
             },
             {
                 path: 'menu',
-                component: MenuComponent
+                loadChildren: () => import('@pizza-palace/menu').then(m => m.MenuModule)
             },
             {
                 path: 'order',
-                component: OrderComponent
+                loadChildren: () => import('@pizza-palace/order').then(m => m.OrderModule)
             }
         ])
     ],
