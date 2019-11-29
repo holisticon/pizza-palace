@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { addToOrder, OrderItem } from '@pizza-palace/order-shared';
 import { Pizza } from '@pizza-palace/pizza-shared';
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
 import { MenuService } from '../menu.service';
 
 @Component({
@@ -11,19 +13,18 @@ import { MenuService } from '../menu.service';
 })
 export class MenuComponent {
 
-    pizzas: Pizza[] = [];
-
-    isLoading = true;
+    pizzas: Observable<Pizza[]>;
+    isLoading: Observable<boolean>;
 
     constructor(
         private store: Store<void>,
         private menuService: MenuService
     ) {
-        this.menuService.getPizzas()
-            .subscribe(pizzas => {
-                this.isLoading = false;
-                this.pizzas = pizzas;
-            });
+        this.pizzas = this.menuService.getPizzas();
+        this.isLoading = this.pizzas.pipe(
+            startWith(null),
+            map(pizzas => pizzas === null)
+        );
     }
 
     onAddToOrder(item: OrderItem) {

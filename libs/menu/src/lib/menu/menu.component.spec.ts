@@ -58,13 +58,18 @@ describe('MenuComponent', () => {
     });
 
     describe('isLoading', () => {
-        it('is true initially', () => {
-            expect(component.isLoading).toBe(true);
-        });
         it('is false when pizzas are loaded', fakeAsync(() => {
+            let isLoading: boolean;
+
+            component.isLoading.subscribe(value => isLoading = value);
+            tick();
+
+            expect(isLoading).toBe(true);
+
             pizzasSubject.next(pizzas);
             tick();
-            expect(component.isLoading).toBe(false);
+
+            expect(isLoading).toBe(false);
         }));
     });
 

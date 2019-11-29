@@ -3,8 +3,8 @@
     <pp-current-order></pp-current-order>
 </div>
 
-<pp-loading-spinner *ngIf="isLoading"></pp-loading-spinner>
+<pp-loading-spinner *ngIf="isLoading | async"></pp-loading-spinner>
 
-<pp-menu-list [pizzas]="pizzas" (addToOrder)="onAddToOrder($event)"></pp-menu-list>
+<pp-menu-list [pizzas]="pizzas | async" (addToOrder)="onAddToOrder($event)"></pp-menu-list>
 
 <a routerLink="/order" class="float-right btn btn-outline-primary">🛒 Go to Checkout</a>
