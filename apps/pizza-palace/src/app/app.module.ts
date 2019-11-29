@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
-import { ActionReducer } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { ActionReducer, StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { storeLogger } from 'ngrx-store-logger';
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
@@ -21,6 +23,19 @@ export function logger(reducer: ActionReducer<any>): any {
     ],
     imports: [
         BrowserModule,
+        StoreModule.forRoot({}, {
+            metaReducers,
+            runtimeChecks: {
+                strictActionImmutability: true,
+                strictActionSerializability: true,
+                strictStateImmutability: true,
+                strictStateSerializability: true
+            }
+        }),
+        EffectsModule.forRoot([]),
+        StoreDevtoolsModule.instrument({
+            logOnly: environment.production
+          }),
         RouterModule.forRoot([
             {
                 path: '',

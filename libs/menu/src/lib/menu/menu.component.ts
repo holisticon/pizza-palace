@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { OrderItem } from '@pizza-palace/order-shared';
+import { Store } from '@ngrx/store';
+import { addToOrder, OrderItem } from '@pizza-palace/order-shared';
 import { Pizza, PizzaSize } from '@pizza-palace/pizza-shared';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
@@ -19,6 +20,7 @@ export class MenuComponent {
     isLoading = true;
 
     constructor(
+        private store: Store<void>,
         private menuService: MenuService
     ) {
         this.pizzas = this.menuService.getPizzas().pipe(
@@ -27,7 +29,7 @@ export class MenuComponent {
     }
 
     onAddToOrder(item: OrderItem) {
-        console.log('Add to Order', item);
+        this.store.dispatch(addToOrder({ item }));
     }
 
 }
