@@ -1,6 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { ORDER_FEATURE_KEY, OrderPartialState, OrderState } from './order.reducer';
-import { toTotalPrice } from '../../order';
+import { toTotalPrice } from '../order';
+import { OrderPartialState, OrderState, ORDER_FEATURE_KEY } from './order.reducer';
 
 export const getOrderState = createFeatureSelector<OrderPartialState, OrderState>(
     ORDER_FEATURE_KEY

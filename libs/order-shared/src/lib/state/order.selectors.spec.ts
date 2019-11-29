@@ -1,8 +1,8 @@
 import { PizzaSize } from '@pizza-palace/pizza-shared';
+import { toTotalPrice } from '../order';
 import { OrderItem } from '../order.model';
-import { initialState, ORDER_FEATURE_KEY, OrderPartialState, OrderState } from "./order.reducer";
+import { initialState, OrderPartialState, OrderState, ORDER_FEATURE_KEY } from "./order.reducer";
 import { getOrderState, selectIsCheckingOut, selectOrderItems, selectQuantity, selectTotalPrice } from './order.selectors';
-import { toTotalPrice } from '../../order';
 
 describe('orderSelectors', () => {
     const items: OrderItem[] = [

@@ -1,4 +1,4 @@
-import { OrderItem } from './lib/order.model';
+import { OrderItem } from './order.model';
 
 export function toTotalPrice(items: OrderItem[]) {
     return items.reduce(

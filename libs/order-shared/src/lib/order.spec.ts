@@ -1,6 +1,6 @@
-import { OrderItem } from './lib/order.model';
-import { toTotalPrice } from './order';
 import { PizzaSize } from '@pizza-palace/pizza-shared';
+import { toTotalPrice } from './order';
+import { OrderItem } from './order.model';
 
 describe('order', () => {
     describe('toTotalPrice', () => {
