@@ -24,7 +24,7 @@ git checkout workshop/step-2
             pathMatch: 'full',
             component: MenuComponent
         }
-    ]);
+    ])
     ```
 
 2. lazy-load `MenuModule` in `AppModule`
