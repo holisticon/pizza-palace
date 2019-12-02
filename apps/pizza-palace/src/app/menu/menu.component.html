@@ -17,14 +17,12 @@
 
                 <div class="col-4 text-right">
                     <div class="btn-group shadow-sm" role="group">
-                        <button class="btn btn-outline-danger" (click)="onAddToOrder({ pizza: pizza, size: pizzaSizes.S })">S</button>
-                        <button class="btn btn-outline-danger" (click)="onAddToOrder({ pizza: pizza, size: pizzaSizes.M })">M</button>
-                        <button class="btn btn-outline-danger" (click)="onAddToOrder({ pizza: pizza, size: pizzaSizes.L })">L</button>
+                        <button class="btn btn-outline-danger" (click)="onAddToOrder({ pizza: pizza, size: 's' })">S</button>
+                        <button class="btn btn-outline-danger" (click)="onAddToOrder({ pizza: pizza, size: 'm' })">M</button>
+                        <button class="btn btn-outline-danger" (click)="onAddToOrder({ pizza: pizza, size: 'l' })">L</button>
                     </div>
                 </div>
             </div>
         </div>
     </li>
 </ul>
-
-<a routerLink="/order" class="float-right btn btn-outline-primary">🛒 Go to Checkout</a>

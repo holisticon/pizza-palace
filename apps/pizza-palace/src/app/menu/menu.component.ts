@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { OrderItem } from '../order/order.model';
 import { pizzas } from '../pizza/pizza.data';
-import { Pizza, PizzaSize } from '../pizza/pizza.model';
+import { Pizza } from '../pizza/pizza.model';
 
 @Component({
     selector: 'pp-menu',
@@ -10,11 +9,9 @@ import { Pizza, PizzaSize } from '../pizza/pizza.model';
 })
 export class MenuComponent {
 
-    pizzaSizes = PizzaSize;
-
     pizzas: Pizza[] = pizzas;
 
-    onAddToOrder(item: OrderItem) {
+    onAddToOrder(item: any) {
         console.log('Add to Order', item);
     }
 
