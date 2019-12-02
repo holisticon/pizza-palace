@@ -49,6 +49,6 @@ git checkout workshop/step-1
 
 6. remove component declarations from `AppModule`
 
-7. add imports for `MenuComponent` and `OrderComponent` to `AppModule`
+7. add imports for `MenuModule` and `OrderModule` to `AppModule`
 
 👨‍🏫 [Solution #1](https://github.com/ngxp/pizza-palace/tree/workshop/step-1-solution)
