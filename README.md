@@ -24,18 +24,18 @@ git checkout workshop/step-1
     npm run ng -- generate library pizza-shared --style scss
     ```
 2. prepare `menu` library
-    1. move folder `apps/pizza-palace/src/app/menu` to `/libs/menu/src/lib`
+    1. move folder `apps/pizza-palace/src/app/menu` to `libs/menu/src/lib`
     2. export `MenuComponent` from `index.ts`
     3. add `MenuComponent` to declarations in `MenuModule`
 
 3. prepare `order` library
-    1. move folder `apps/pizza-palace/src/app/order` to `/libs/order/src/lib`
+    1. move folder `apps/pizza-palace/src/app/order` to `libs/order/src/lib`
     2. export `OrderComponent` and `OrderItem` from `index.ts`
     3. add `OrderComponent` to declarations in `OrderModule`
 
 4. prepare `pizza-shared` library
 
-    1. move files `apps/pizza-palace/src/app/pizza/**` to `/libs/pizza-shared/src/lib`
+    1. move files `apps/pizza-palace/src/app/pizza/**` to `libs/pizza-shared/src/lib`
     2. export `Pizza`, `PizzaSize` and `pizzas` from `index.ts`
 
 5. update imports in
