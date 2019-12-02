@@ -24,8 +24,9 @@ git checkout workshop/step-3
 
 2. prepare `order-shared` library
     1. move folder `libs/order/src/lib/current-order` to `libs/order-shared/src/lib`
-    2. add declaration and export for `CurrentOrderComponent` to `OrderSharedModule`
-    3. export `OrderItem` in `index.ts`
+    2. move file `libs/order/src/lib/order.model.ts` to `libs/order-shared/src/lib`
+    3. add declaration and export for `CurrentOrderComponent` to `OrderSharedModule`
+    4. export `OrderItem` in `index.ts`
 
 3. remove `OrderItem` export from `index.ts`
 
