@@ -12,7 +12,6 @@ Modularization of Angular projects using Nx Workspace.
 
 ```
 git reset --hard
-git clean -f -d
 git checkout workshop/step-1
 ```
 
@@ -23,12 +22,15 @@ git checkout workshop/step-1
     npm run ng -- generate library order --style scss
     npm run ng -- generate library pizza-shared --style scss
     ```
+
 2. prepare `menu` library
+
     1. move folder `apps/pizza-palace/src/app/menu` to `libs/menu/src/lib`
     2. export `MenuComponent` from `index.ts`
     3. add `MenuComponent` to declarations in `MenuModule`
 
 3. prepare `order` library
+
     1. move folder `apps/pizza-palace/src/app/order` to `libs/order/src/lib`
     2. export `OrderComponent` and `OrderItem` from `index.ts`
     3. add `OrderComponent` to declarations in `OrderModule`
@@ -39,6 +41,7 @@ git checkout workshop/step-1
     2. export `Pizza`, `PizzaSize` and `pizzas` from `index.ts`
 
 5. update imports in
+
     - `app.module.ts`
     - `menu.component.ts`
     - `order.component.ts`
