@@ -2,50 +2,113 @@
 
 Go to [master](https://github.com/ngxp/pizza-palace) branch for setup instructions.
 
-## Modularization
+## Crash Course
 
-Modularization of Angular projects using Nx Workspace.
+Add components and setup routing.
 
-#### Modularize your project using libraries and keep your application lean.
-
-👩‍🔬 [Excercise #1](https://github.com/ngxp/pizza-palace/tree/workshop/step-1)
+👩‍🔬 [Excercise #0](https://github.com/ngxp/pizza-palace/tree/workshop/step-0)
 
 ```
 git reset --hard
 git clean -f -d
-git checkout workshop/step-1
+git checkout workshop/step-0
 ```
 
-1. create libraries for `menu`, `order`, `pizza-shared`
+1. create a `MenuComponent`
 
     ```sh
-    npm run ng -- generate library menu --style scss
-    npm run ng -- generate library order --style scss
-    npm run ng -- generate library pizza-shared --style scss
+    npm run ng -- generate menu
     ```
-2. prepare `menu` library
-    1. move folder `apps/pizza-palace/src/app/menu` to `libs/menu/src/lib`
-    2. export `MenuComponent` from `index.ts`
-    3. add `MenuComponent` to declarations in `MenuModule`
 
-3. prepare `order` library
-    1. move folder `apps/pizza-palace/src/app/order` to `libs/order/src/lib`
-    2. export `OrderComponent` and `OrderItem` from `index.ts`
-    3. add `OrderComponent` to declarations in `OrderModule`
+2. add a title
 
-4. prepare `pizza-shared` library
+    ```html
+    <div class="row justify-content-between align-items-center m-0 my-4">
+        <h1 class="m-0">Menu</h1>
+    </div>
+    ```
 
-    1. move files `apps/pizza-palace/src/app/pizza/**` to `libs/pizza-shared/src/lib`
-    2. export `Pizza`, `PizzaSize` and `pizzas` from `index.ts`
+3. create a `Pizza` interface in `apps/pizza-palace/src/app/pizza/pizza.model.ts` that describes this pizza sample data:
 
-5. update imports in
-    - `app.module.ts`
-    - `menu.component.ts`
-    - `order.component.ts`
-    - `order.model.ts`
+    ```ts
+    {
+        name: 'Pizza Olive',
+        price: 7.90,
+        image: '/assets/pizza-olive.jpg',
+        ingredients: 'Olives, Bacon, Cheese, Tomato sauce'
+    }
+    ```
 
-6. remove component declarations from `AppModule`
+4. create an array of pizzas in `apps/pizza-palace/src/app/pizza/pizza.data.ts`
 
-7. add imports for `MenuComponent` and `OrderComponent` to `AppModule`
+    ```ts
+    export const pizzas: Pizza[] = [
+        {
+            name: 'Pizza Olive',
+            price: 7.90,
+            image: '/assets/pizza-olive.jpg',
+            ingredients: 'Olives, Bacon, Cheese, Tomato sauce'
+        },
+        {
+            name: 'Pizza Aspargus',
+            price: 7.90,
+            image: '/assets/pizza-aspargus.jpg',
+            ingredients: 'Aspargus, Bacon, Onions, Corn, Cheese, Tomato sauce'
+        },
+        {
+            name: 'Pizza BBQ',
+            price: 6.90,
+            image: '/assets/pizza-barbecue.jpg',
+            ingredients: 'Barbecue sauce, Sauce Hollandaise, Cheese, Tomato sauce'
+        }
+    ];
+    ```
 
-👨‍🏫 [Solution #1](https://github.com/ngxp/pizza-palace/tree/workshop/step-1-solution)
+5. add pizza to the `MenuComponent` state
+
+    ```ts
+    pizzas: Pizza[] = pizzas;
+    ```
+
+6. render the pizzas in the component template
+
+    ```html
+    <ul class="list-unstyled">
+        <li class="mb-3" *ngFor="let pizza of pizzas">
+            <div class="card shadow-sm">
+                <div class="card-body row justify-content-between align-items-center m-0">
+                    <div class="col-8 media">
+                        <img [src]="pizza.image" class="mr-3 rounded" [alt]="pizza.name" height="80">
+                        <div class="media-body">
+                            <h5 class="m-0">{{ pizza.name }}</h5>
+                            <small class="text-muted">{{ pizza.ingredients }}</small>
+                            <strong class="d-block">{{ pizza.price | currency:'EUR' }}</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+    ```
+
+7. add buttons to add pizzas in three different sizes to the order as a child of the `div.card-body` element
+
+    ```html
+    <div class="col-4 text-right">
+        <div class="btn-group shadow-sm" role="group">
+            <button class="btn btn-outline-danger" (click)="onAddToOrder({ pizza: pizza, size: 's' })">S</button>
+            <button class="btn btn-outline-danger" (click)="onAddToOrder({ pizza: pizza, size: 'm' })">M</button>
+            <button class="btn btn-outline-danger" (click)="onAddToOrder({ pizza: pizza, size: 'l' })">L</button>
+        </div>
+    </div>
+    ```
+
+8. add an event handler to the `MenuComponent` that handles clicks of the button
+
+    ```ts
+    onAddToOrder(item: OrderItem) {
+        console.log('Add to Order', item);
+    }
+    ```
+
+👨‍🏫 [Solution #0](https://github.com/ngxp/pizza-palace/tree/workshop/step-0-solution)

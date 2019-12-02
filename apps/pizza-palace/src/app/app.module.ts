@@ -5,9 +5,7 @@ import { ActionReducer } from '@ngrx/store';
 import { storeLogger } from 'ngrx-store-logger';
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
-import { MenuComponent } from './menu/menu.component';
 import { NavigationComponent } from './navigation/navigation.component';
-import { OrderComponent } from './order/order.component';
 
 export function logger(reducer: ActionReducer<any>): any {
     // default, no options
@@ -19,27 +17,11 @@ export function logger(reducer: ActionReducer<any>): any {
 @NgModule({
     declarations: [
         AppComponent,
-        NavigationComponent,
-        MenuComponent,
-        OrderComponent
+        NavigationComponent
     ],
     imports: [
         BrowserModule,
-        RouterModule.forRoot([
-            {
-                path: '',
-                pathMatch: 'full',
-                redirectTo: 'menu'
-            },
-            {
-                path: 'menu',
-                component: MenuComponent
-            },
-            {
-                path: 'order',
-                component: OrderComponent
-            }
-        ])
+        RouterModule.forRoot([])
     ],
     providers: [],
     bootstrap: [AppComponent]
