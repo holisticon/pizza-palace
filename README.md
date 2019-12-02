@@ -10,14 +10,13 @@ Add components and setup routing.
 
 ```
 git reset --hard
-git clean -f -d
 git checkout workshop/step-0
 ```
 
 1. create a `MenuComponent`
 
     ```sh
-    npm run ng -- generate menu
+    npm run ng -- generate component menu
     ```
 
 2. add a title
