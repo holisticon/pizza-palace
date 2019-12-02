@@ -13,10 +13,14 @@ git reset --hard
 git checkout workshop/step-0
 ```
 
-1. create a `MenuComponent`
+1. create a `MenuComponent` and add to `AppComponent`
 
     ```sh
     npm run ng -- generate component menu
+    ```
+
+    ```html
+    <pp-menu></pp-menu>
     ```
 
 2. add a title
@@ -44,21 +48,22 @@ git checkout workshop/step-0
     export const pizzas: Pizza[] = [
         {
             name: 'Pizza Olive',
-            price: 7.90,
+            price: 7.9,
             image: '/assets/pizza-olive.jpg',
             ingredients: 'Olives, Bacon, Cheese, Tomato sauce'
         },
         {
             name: 'Pizza Aspargus',
-            price: 7.90,
+            price: 7.9,
             image: '/assets/pizza-aspargus.jpg',
             ingredients: 'Aspargus, Bacon, Onions, Corn, Cheese, Tomato sauce'
         },
         {
             name: 'Pizza BBQ',
-            price: 6.90,
+            price: 6.9,
             image: '/assets/pizza-barbecue.jpg',
-            ingredients: 'Barbecue sauce, Sauce Hollandaise, Cheese, Tomato sauce'
+            ingredients:
+                'Barbecue sauce, Sauce Hollandaise, Cheese, Tomato sauce'
         }
     ];
     ```
@@ -75,13 +80,24 @@ git checkout workshop/step-0
     <ul class="list-unstyled">
         <li class="mb-3" *ngFor="let pizza of pizzas">
             <div class="card shadow-sm">
-                <div class="card-body row justify-content-between align-items-center m-0">
+                <div
+                    class="card-body row justify-content-between align-items-center m-0"
+                >
                     <div class="col-8 media">
-                        <img [src]="pizza.image" class="mr-3 rounded" [alt]="pizza.name" height="80">
+                        <img
+                            [src]="pizza.image"
+                            class="mr-3 rounded"
+                            [alt]="pizza.name"
+                            height="80"
+                        />
                         <div class="media-body">
                             <h5 class="m-0">{{ pizza.name }}</h5>
-                            <small class="text-muted">{{ pizza.ingredients }}</small>
-                            <strong class="d-block">{{ pizza.price | currency:'EUR' }}</strong>
+                            <small class="text-muted"
+                                >{{ pizza.ingredients }}</small
+                            >
+                            <strong class="d-block"
+                                >{{ pizza.price | currency:'EUR' }}</strong
+                            >
                         </div>
                     </div>
                 </div>
@@ -95,9 +111,24 @@ git checkout workshop/step-0
     ```html
     <div class="col-4 text-right">
         <div class="btn-group shadow-sm" role="group">
-            <button class="btn btn-outline-danger" (click)="onAddToOrder({ pizza: pizza, size: 's' })">S</button>
-            <button class="btn btn-outline-danger" (click)="onAddToOrder({ pizza: pizza, size: 'm' })">M</button>
-            <button class="btn btn-outline-danger" (click)="onAddToOrder({ pizza: pizza, size: 'l' })">L</button>
+            <button
+                class="btn btn-outline-danger"
+                (click)="onAddToOrder({ pizza: pizza, size: 's' })"
+            >
+                S
+            </button>
+            <button
+                class="btn btn-outline-danger"
+                (click)="onAddToOrder({ pizza: pizza, size: 'm' })"
+            >
+                M
+            </button>
+            <button
+                class="btn btn-outline-danger"
+                (click)="onAddToOrder({ pizza: pizza, size: 'l' })"
+            >
+                L
+            </button>
         </div>
     </div>
     ```
