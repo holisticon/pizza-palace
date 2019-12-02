@@ -106,7 +106,7 @@ git checkout workshop/step-0
 8. add an event handler to the `MenuComponent` that handles clicks of the button
 
     ```ts
-    onAddToOrder(item: OrderItem) {
+    onAddToOrder(item: any) {
         console.log('Add to Order', item);
     }
     ```
