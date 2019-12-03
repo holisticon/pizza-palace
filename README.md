@@ -49,11 +49,8 @@ git checkout workshop/step-4
     @Output()
     addToOrder: EventEmitter<OrderItem> = new EventEmitter();
 
-    onAddToOrder(pizza: Pizza, size: PizzaSize) {
-        this.addToOrder.emit({
-            pizza,
-            size
-        })
+    onAddToOrder(orderItem: OrderItem) {
+        this.addToOrder.emit(orderItem)
     }
     ```
 
