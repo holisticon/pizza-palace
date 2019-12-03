@@ -19,7 +19,7 @@ git checkout workshop/step-4
 1. create `LoadingSpinnerComponent` in `menu` library
 
     ```sh
-    npm run ng -- generate component loading-spinner
+    npm run ng -- generate component loading-spinner --project menu
     ```
 
 2. move `div.d-flex.justify-content-center` from `menu.component.html` to `LoadingSpinnerComponent`
