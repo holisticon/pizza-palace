@@ -30,7 +30,7 @@ git checkout workshop/step-3
 
 3. remove `OrderItem` export from `index.ts`
 
-3. import `OrderSharedModule` in `app.module.ts` and remove `CurrentOrderComponent` declaration
+3. import `OrderSharedModule` in `MenuModule` and remove `CurrentOrderComponent` declaration
 
 4. update import in `menu.component.ts` and `order.component.ts`
 
